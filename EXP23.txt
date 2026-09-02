@@ -1,0 +1,5 @@
+height <- factor(c("Short","Tall","Medium","Tall","Short"))
+print(height)
+
+lettersample <- factor(sample(LETTERS[1:5],10,replace=TRUE))
+print(lettersample)

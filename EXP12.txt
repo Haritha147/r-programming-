@@ -1,0 +1,4 @@
+A <- matrix(10:13, nrow=2)
+B <- matrix(1:4, nrow=2)
+result <- A - B
+print(result)

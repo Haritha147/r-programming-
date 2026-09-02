@@ -1,0 +1,4 @@
+A <- matrix(1:4, nrow=2)
+B <- matrix(5:8, nrow=2)
+C <- A + B
+print(C)

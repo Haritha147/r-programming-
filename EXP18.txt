@@ -1,0 +1,6 @@
+A <- matrix(1:4, nrow=2)
+if(det(A) != 0) {
+ print("Invertible Matrix")
+} else {
+ print("Not Invertible")
+}
