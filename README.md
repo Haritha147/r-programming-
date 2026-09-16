@@ -26,7 +26,17 @@ Step 9: Display the logical vector on the screen.
 Step 10: Use the class function to print the data type of the logical vector. 
 Step 11: Observe and note that numeric, character, and logical vectors each have distinct data types. 
  
-  
+ 
+a <- c(10, 20, 30, 40, 50)
+b <- c("Apple", "Banana", "Mango", "Orange")
+c <- c(TRUE, FALSE, TRUE, FALSE)
+a
+b
+c
+
+typeof(a)
+typeof(b)
+typeof(c) 
  
  
 Result: 
@@ -47,7 +57,10 @@ Step 6: Create a smaller matrix (for example, 2×2) to observe how matrix size c
 Step 7: Display the third matrix to view its content. 
 Step 8: Observe that each matrix organizes elements in a rectangular form with equallength rows and columns. 
  
- 
+ a = matrix(1:20, nrow=5, ncol=4)
+rownames(a) = paste0("R", 1:5)
+colnames(a) = paste0("C", 1:4)
+a
  	 
  
 Result: 
@@ -67,7 +80,8 @@ Step 5: Display the array to view all the elements arranged across multiple rows
 Step 6: Observe how an array in R can store data in more than two dimensions, unlike a matrix. 
  
  
- 
+ a = array(1:24, dim=c(3,4,2))
+a
  
  
 Result: 
@@ -88,7 +102,8 @@ Step 6: Access a specific element from the array using its row, column, and tabl
 Step 7: Print the selected element to verify correct indexing within the array. 
  
  
- 
+ a = array(1:8, dim=c(2,2,2))
+print(a[2,1,2])
   
  
 Result: 
@@ -109,7 +124,13 @@ Step 6: Randomly generate a sample of leflers from A to E using the sample funct
 Step 7: Convert the generated leflers into a factor to represent them as categorical variables. 
 Step 8: Print the factor to view the sampled categories and their assigned levels. 
  
- 
+ height = factor(c("Short", "Tall", "Medium", "Tall", "Short"))
+height
+levels(height)
+
+letters = factor(sample(LETTERS, 5))
+letters 
+
 Result: 
 Hence the output is verified successfully. 
  
@@ -127,7 +148,9 @@ Step 5: Combine the vector, matrix, and function into a single list using the li
 Step 6: Assign appropriate names to each component in the list for befler readability. 
 Step 7: Display the list to view all its components — the vector, matrix, and function — stored together in one structured object. 
  
- 
+ a = list(numbers=1:5, matrix=matrix(1:4,2,2), fun=function() 5^2)
+a
+a$fun()
  
 Result: 
  
@@ -155,9 +178,20 @@ Print “Buzz” for numbers divisible only by 5.
 Otherwise, print the number itself. 
 Step 11: Display the complete sequence of printed outputs to verify the logic. 
  
+ n = 12
+factors = 1:n[n %% 1:n == 0]
+print(factors)
+x = sample(-50:50, 10)
+print(x)
+for(i in 1:100) {
+  if(i %% 15 == 0) print("FizzBuzz")
+  else if(i %% 3 == 0) print("Fizz")
+  else if(i %% 5 == 0) print("Buzz")
+  else print(i)
+}
  
  
- 
+8) Generate random numbers from a normal distribution; count occurances
  
 Procedure: 
 Step 1: Open RStudio or R console on your computer. 
@@ -168,8 +202,10 @@ Step 5: Use the table function to count the frequency of each rounded value.
 Step 6: Convert the frequency table into a data frame for easier viewing and structured display. 
 Step 7: Print the data frame to observe each rounded number along with its frequency count. 
  
- 
- 
+ x = rnorm(100, mean=0, sd=1)
+print(x)
+table(round(x, 1))
+
 Result: 
 Hence the output is verified successfully. 
  
@@ -188,7 +224,7 @@ Step 4: Define the range of x-axis and y-axis using xlim and ylim.
 Step 5: Label the x-axis and y-axis with appropriate names. 
 Step 6: Run the program to display an empty plofling area ready for adding points or lines later. 
  
- 
+ plot(0, 0, type="n", xlim=c(0,10), ylim=c(0,10))
  
  
  
@@ -210,7 +246,33 @@ Step 6: Save the final data frame as a CSV file using the write.csv function.
 Step 7: Print the data frame to display the updated and sorted student information. 
  
  
- 
+ exam_data = data.frame(
+  name = c("Arun", "Bala", "Cathy", "David"),
+  score = c(85, 72, 90, 65),
+  attempts = c(1, 2, 1, 3),
+  qualifying = c(TRUE, TRUE, TRUE, FALSE)
+)
+
+exam_data
+
+# Extract
+exam_data$name
+exam_data[1, ]
+
+# Add a row
+exam_data = rbind(exam_data, c("Esha", 78, 2, TRUE))
+
+# Add a column
+exam_data$grade = c("A", "B", "A", "C", "B")
+
+# Sort by score
+exam_data = exam_data[order(exam_data$score), ]
+
+# Save to file
+write.csv(exam_data, "exam_data.csv", row.names = FALSE)
+
+exam_data
+
 Result: 
 Hence the output is verified successfully. 
  
@@ -226,7 +288,13 @@ Step 3: Store the imported data in a variable for further use.
 Step 4: Display a message indicating that the file contents are being printed. 
 Step 5: Print the data to view all the rows and columns from the CSV file. 
  
- 
+ data = read.csv("exam_data.csv")
+
+print(data)
+
+or
+data = read.csv("C:/Users/YourName/Documents/exam_data.csv")
+print(data)
  
 Result: 
 Hence the output is verified successfully. 
@@ -245,8 +313,20 @@ Step 5: Store the calculated monthly average values in a new variable.
 Step 6: Print a message to indicate that monthly averages are being displayed. 
 Step 7: Display the result to view the average Ozone, Solar Radiation, Wind, and Temperature for each month. 
  
- 
- 
+ library(reshape2)
+
+data = airquality
+
+# Melt
+m = melt(data, id.vars = c("Month", "Day"))
+print(m)
+
+# Cast and calculate monthly averages
+result = dcast(m, Month ~ variable, mean, na.rm = TRUE)
+print(result)
+
+install.packages("reshape2")
+
 Result: 
 Hence the output is verified successfully. 
  
@@ -263,7 +343,12 @@ Step 4: Combine all the vectors row-wise using the rbind function to form a matr
 Step 5: Print a message indicating that the arrays are combined row-wise. 
 Step 6: Display the resulting matrix to view the combined data. 
  
- 
+ a = matrix(1:6, nrow=2, ncol=3)
+b = matrix(7:12, nrow=2, ncol=3)
+
+result = rbind(a, b)
+
+print(result)
  
  
 Result: 
@@ -284,7 +369,24 @@ Step 6: Use the aggregate function to calculate the average weight of chicks for
 Step 7: Display the result showing the mean weight corresponding to each diet type. 
  
  
- 
+ library(reshape2)
+
+data = ChickWeight
+
+# Display data
+print(data)
+
+# Sort by weight
+data = data[order(data$weight), ]
+print(data)
+
+# Melt
+m = melt(data, id.vars=c("Chick","Time","Diet"))
+print(m)
+
+# Cast by Diet
+result = dcast(m, Diet ~ variable, mean, na.rm=TRUE)
+print(result)
  
  
 Result: 
@@ -306,7 +408,33 @@ Step 6: Find the quantile values of the Sepal.Length column to understand data d
 Step 7: Use the aggregate function to calculate the mean of all numeric variables grouped by Species. 
 Step 8: Display the results to observe the overall statistical analysis of the dataset. 
  
- 
+ data = iris
+
+# Dimensions
+dim(data)
+
+# Summary
+summary(data)
+
+# Standard deviation
+sapply(data[1:4], sd)
+
+# Quantiles
+sapply(data[1:4], quantile)
+
+# Grouping by Species
+aggregate(. ~ Species, data=data, mean)
+
+# Pivot table
+table(data$Species)
+
+# Categorical grouping of Sepal.Length
+data$Sepal.Category = cut(data$Sepal.Length,
+                          breaks=c(4,5,6,7,8),
+                          labels=c("Low","Medium","High","Very High"))
+
+table(data$Sepal.Category)
+
 Result: 
 Hence the output is verified successfully. 
  
@@ -325,7 +453,43 @@ Step 6: Find the quantile values of the Sepal.Length column to understand data d
 Step 7: Use the aggregate function to calculate the mean of all numeric variables grouped by Species. 
 Step 8: Display the results to observe the overall statistical analysis of the dataset. 
  
- 
+ data = USArrests
+
+# Summary statistics
+summary(data)
+
+# State with largest rape arrests
+rownames(data)[which.max(data$Rape)]
+
+# Maximum and minimum murder rates
+max(data$Murder)
+min(data$Murder)
+
+# Correlation among features
+cor(data)
+
+# States above median Assault arrests
+data[data$Assault > median(data$Assault), ]
+
+# Bottom 25% for Murder
+data[data$Murder <= quantile(data$Murder, 0.25), ]
+
+# Histogram
+hist(data$Murder, main="Murder Arrests", xlab="Murder")
+
+# Density plot
+plot(density(data$Murder), main="Density of Murder")
+
+# Scatterplot
+plot(data$Murder, data$Assault,
+     main="Murder vs Assault",
+     xlab="Murder", ylab="Assault")
+
+# Bar graph
+barplot(data$Murder,
+        names.arg=rownames(data),
+        main="Murder Arrests",
+        las=2)
  
  
 Hence the output is verified successfully. 
@@ -345,7 +509,26 @@ Step 6: Create another bar plot to show the relationship between Gender and Surv
 Step 7: Add an appropriate title for the second plot to represent Survival vs Gender. 
 Step 8: Observe both plots to compare survival paflerns across different classes and genders. 
  
- 
+ data = read.csv("C:/Users/YourName/Downloads/titanic_train.csv")
+
+barplot(table(data$Pclass, data$Survived),
+        main="Survival vs Class",
+        xlab="Class",
+        ylab="Count",
+        beside=TRUE)
+
+barplot(table(data$Sex, data$Survived),
+        main="Survival vs Gender",
+        xlab="Gender",
+        ylab="Count",
+        beside=TRUE)
+
+data$Age = as.numeric(as.character(data$Age))
+
+hist(data$Age,
+     main="Age Distribution",
+     xlab="Age",
+     na.rm=TRUE)
  
 Result: 
 Hence the output is verified successfully. 
@@ -367,7 +550,18 @@ Step 8: Draw a scafler plot to visualize the relationship between two numeric va
 Step 9: Observe all the graphs displayed in the multi-plot layout. 
  
  
- 
+ x = 1:10
+y = c(2,5,4,8,6,9,7,10,8,12)
+
+boxplot(y, main="Boxplot", ylab="Values")
+
+hist(y, main="Histogram", xlab="Values")
+
+barplot(y, main="Bar Plot", xlab="Values", ylab="Frequency")
+
+plot(x, y, type="l", main="Line Chart", xlab="X", ylab="Y")
+
+plot(x, y, main="Scatter Plot", xlab="X", ylab="Y")
  
 Hence the output is verified successfully. 
  
@@ -387,7 +581,29 @@ Step 7: Plot a line chart to show the trend of values sequentially.
 Step 8: Draw a scafler plot to visualize the relationship between two numeric variables. 
 Step 9: Observe all the graphs displayed in the multi-plot layout. 
  
- 
+ Spend = c(10,20,30,40,50,60,70,80,90,100)
+Sales = c(12,18,25,30,38,45,50,58,65,72)
+
+data = data.frame(Spend, Sales)
+
+print(data)
+
+model = lm(Sales ~ Spend, data=data)
+
+print(summary(model))
+
+new_data = data.frame(Spend=50)
+
+predicted_sales = predict(model, new_data)
+
+print(predicted_sales)
+
+plot(data$Spend, data$Sales,
+     main="Sales vs Spend",
+     xlab="Spend",
+     ylab="Sales")
+
+abline(model)
 Result: 
 Hence the output is verified successfully. 
  
@@ -404,7 +620,27 @@ Step 4: Use the predict function to generate predicted weight values based on th
 Step 5: Calculate the mean squared error (MSE) by finding the average of squared differences between the actual and predicted weight values. 
 Step 6: Display the calculated MSE to evaluate the accuracy of the regression model. 
  
- 
+ data = ChickWeight
+
+model = lm(weight ~ Time + Diet, data=data)
+
+print(summary(model))
+
+predicted = predict(model, data)
+
+print(predicted)
+
+error = data$weight - predicted
+
+print(error)
+
+mse = mean(error^2)
+
+print(mse)
+
+rmse = sqrt(mse)
+
+print(rmse)
  
  
 Result: 
@@ -415,4 +651,30 @@ Hence the output is verified successfully.
 Aim: 
 To randomly split iris dataset into train/test (80/20), build logistic regression (Species ~ Petal.Length + Petal.Width), predict, and evaluate with confusion matrix. 
  
- 
+install.packages("nnet")
+library(nnet)
+
+set.seed(123)
+
+data = iris
+
+index = sample(1:nrow(data), 0.8*nrow(data))
+
+train = data[index, ]
+test = data[-index, ]
+
+model = multinom(Species ~ Petal.Length + Petal.Width, data=train)
+
+print(summary(model))
+
+predicted = predict(model, test)
+
+print(predicted)
+
+confusion = table(Actual=test$Species, Predicted=predicted)
+
+print(confusion)
+
+accuracy = sum(diag(confusion)) / sum(confusion)
+
+print(accuracy) 
