@@ -1,0 +1,161 @@
+1.highest value number or low value
+sum<- function(a, b, c) {
+  result <- a + b + c
+  if(result > 50) {
+    return("High Value")
+  } else {
+    return("Low Value")
+  }
+}
+x <- sum(60, 20, 30)
+print(x)
+
+2. factorial
+fact <- function(n) {
+  if(n == 1) {
+    return(1)
+  } else {
+    return(n * fact(n-1))
+  }
+}
+result <- fact(5)
+print(result)
+
+3.mean and standard deviation
+stats_func <- function(x) {
+  mean_val <- mean(x)
+  sd_val <- sd(x)
+  list(mean=mean_val, sd=sd_val)
+}
+data <- c(10,20,30,40,50)
+output <- stats_func(data)
+print(output)
+
+4.student marks
+grade <- function(marks) {
+  if(marks >= 75) {
+    return("Distinction")
+  } else if(marks >= 50) {
+    return("Pass")
+  } else {
+    return("Fail")
+  }
+}
+print(grade(68))
+
+
+
+5.sum of n numbers
+sum_func <- function(n) {
+  total <- 0
+  for(i in 1:n) {
+    total <- total + i
+  }
+  return(total)
+}
+print(sum_func(10))
+
+
+
+
+6.even count
+even_count <- function(x) {
+  count <- 0
+  for(i in x) {
+    if(i %% 2 == 0) {
+      count <- count + 1
+    }
+  }
+  return(count)
+}
+print(even_count(1:20))
+7.power function
+power_func <- function(x, y=2) {
+  return(x^y)
+}
+print(power_func(4))
+print(power_func(4,3))
+
+
+
+8.average
+avg_salary <- function(df) {
+  return(mean(df$salary))
+}
+data <- data.frame(salary=c(20000,30000,40000))
+print(avg_salary(data))
+
+
+
+9.square root
+values <- c(4,9,16,25)
+sqrt_func <- function(x) {
+  return(sqrt(x))
+}
+result <- sapply(values, sqrt_func)
+print(result)
+
+
+
+10.matrix
+mat <- matrix(1:9, nrow=3)
+print(mat)
+print(sum(mat))
+print(mean(mat))
+
+
+
+11.addition of matrix
+A <- matrix(1:4, nrow=2)
+B <- matrix(5:8, nrow=2)
+C <- A + B
+print(C)
+
+
+
+12.subtraction of matrix
+A <- matrix(10:13, nrow=2)
+B <- matrix(1:4, nrow=2)
+result <- A - B
+print(result)
+
+
+13.modulous of matrix
+A <- matrix(1:6, nrow=2)
+B <- matrix(1:6, ncol=2)
+result <- A %*% B
+print(result)
+
+14.matrix multiplication
+A <- matrix(1:4, nrow=2)
+B <- matrix(5:8, nrow=2)
+result <- A * B
+print(result)
+
+
+15.determinante of matrix
+A <- matrix(c(4,7,2,6), nrow=2)
+detA <- det(A)
+invA <- solve(A)
+print(detA)
+print(invA)
+
+16.sum of rows and columns of a matrix
+A <- matrix(1:9, nrow=3)
+print(rowSums(A))
+print(colSums(A))
+
+
+17.diagonal elements of a matrix
+A <- matrix(1:9, nrow=3)
+diag_elements <- diag(A)
+print(diag_elements)
+
+
+18.invertable /not a invertable matrix
+A <- matrix(1:4, nrow=2)
+if(det(A) != 0) {
+  print("Invertible Matrix")
+} else {
+  print("Not Invertible")
+}
